@@ -29,7 +29,6 @@ spec:
             - name: PGUSER
               value: postgres
             - name: PGPASSWORD
-#              value: 1q2w3e4r
               valueFrom:
                 secretKeyRef:
                   name: k8s-test-project-secrets
