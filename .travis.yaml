@@ -1,0 +1,19 @@
+sudo: required
+services:
+  - docker
+env:
+  global:
+    - GIT_HASH=$(git rev-parse --short HEAD)
+    - CLOUDSDK_CORE_DISABLE_PROMPTS=1
+
+before_install:
+  - bash ./cicd/before_install.sh
+
+script:
+  - docker run -e CI=true horadrik/react-test npm run test
+
+deploy:
+  provider: script
+  on:
+    branch: master
+  script: bash ./cicd/deploy.sh
